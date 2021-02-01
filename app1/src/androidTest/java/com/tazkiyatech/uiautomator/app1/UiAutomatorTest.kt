@@ -2,7 +2,6 @@ package com.tazkiyatech.uiautomator.app1
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.UiDevice
-import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Test
 
@@ -14,6 +13,5 @@ class UiAutomatorTest {
     @Test
     fun launcherPackageName() {
         assertNotEquals("com.android.settings", uiDevice.launcherPackageName)
-        assertEquals("com.google.android.apps.nexuslauncher", uiDevice.launcherPackageName)
     }
 }
