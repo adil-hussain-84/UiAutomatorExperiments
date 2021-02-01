@@ -18,3 +18,7 @@ allprojects {
         jcenter()
     }
 }
+
+wrapper {
+    gradleVersion = '6.8.1'
+}
