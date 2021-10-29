@@ -65,12 +65,12 @@ class UiAutomatorTest {
 
     /**
      * This method exists as an alternative to the [UiDevice.getLauncherPackageName] method
-     * because that method returns `"com.android.settings"` (incorrectly) when run in an Android 11 emulator device.
+     * because that method returns `"com.android.settings"` (incorrectly) when run in an Android 11+ emulator device.
      *
      * @return the package name of the device's default launcher (a.k.a. home) app.
      */
     private fun getHackedLauncherPackageName(): String? {
-        return if (Build.VERSION.SDK_INT == Build.VERSION_CODES.R && uiDevice.productName.startsWith("sdk_gphone_")) {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && uiDevice.productName.startsWith("sdk_gphone")) {
             "com.google.android.apps.nexuslauncher"
         } else {
             uiDevice.launcherPackageName
