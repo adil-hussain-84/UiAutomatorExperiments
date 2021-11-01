@@ -3,11 +3,12 @@
 This Android application project demonstrates a workaround for
 the [UIDevice.getLauncherPackageName()](https://developer.android.com/reference/androidx/test/uiautomator/UiDevice#getlauncherpackagename)
 method reporting an incorrect package name when run in an Android 11+ emulator. The workaround is to add
-a [queries](https://developer.android.com/guide/topics/manifest/queries-element) element to the app's manifest
+a [queries](https://developer.android.com/guide/topics/manifest/queries-element) element in the app's manifest
 which enables
 the [UIDevice.getLauncherPackageName()](https://developer.android.com/reference/androidx/test/uiautomator/UiDevice#getlauncherpackagename)
 method to return the correct package name. See
-the [src/debug/AndroidManifest.xml](src/debug/AndroidManifest.xml) file in this application module.
+the [src/debug/AndroidManifest.xml](src/debug/AndroidManifest.xml) file in this application module for the
+minimal [queries](https://developer.android.com/guide/topics/manifest/queries-element) definition that works.
 
 The class of interest in this application module is
 the [UiAutomatorTest](src/androidTest/java/com/tazkiyatech/uiautomator/app2/UiAutomatorTest.kt) test class.
