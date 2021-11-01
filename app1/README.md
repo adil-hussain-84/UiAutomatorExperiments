@@ -2,9 +2,10 @@
 
 This Android application project demonstrates that
 the [UIDevice.getLauncherPackageName()](https://developer.android.com/reference/androidx/test/uiautomator/UiDevice#getlauncherpackagename)
-method reports an incorrect package name when run in an Android 11+ emulator. It
-reports `com.android.settings` as the default launcher instead of the actual launcher. Note that the method
-works fine when run in older versions of the Android emulator and when run on real Android devices.
+method reports an incorrect package name when run in Android 11+ devices. It reports `com.android.settings` as
+the default launcher instead of the actual launcher. The problem seems to be due
+to [package visibility changes in Android 11](https://developer.android.com/about/versions/11/privacy/package-visibility)
+.
 
 The class of interest in this application module is
 the [UiAutomatorTest](src/androidTest/java/com/tazkiyatech/uiautomator/app1/UiAutomatorTest.kt) test class.
@@ -12,4 +13,5 @@ This test class contains a number of test methods which demonstrate the problem.
 
 ##### Additional links
 
-* See [here](https://issuetracker.google.com/issues/178965163) for the associated bug report in IssueTracker.
+* See [here](https://issuetracker.google.com/issues/178965163) for an item in IssueTracker which was raised as
+  an issue with the Android emulator and which was marked as "Won't Fix (Intended behavior)".
