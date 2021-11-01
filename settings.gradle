@@ -1,3 +1,4 @@
 rootProject.name = "UiAutomatorExperiments"
 
 include ':app1'
+include ':app2'

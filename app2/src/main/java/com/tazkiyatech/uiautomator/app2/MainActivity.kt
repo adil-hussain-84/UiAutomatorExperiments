@@ -1,4 +1,4 @@
-package com.tazkiyatech.uiautomator.app1
+package com.tazkiyatech.uiautomator.app2
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

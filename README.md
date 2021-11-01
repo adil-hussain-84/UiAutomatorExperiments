@@ -4,4 +4,5 @@ This project houses a number of Android applications which each demonstrate a si
 
 The applications in this project are as follows:
 
-* [app1](app1) – `UiDevice.getLauncherPackageName()` bug
+* [app1](app1) – `UiDevice.getLauncherPackageName()` bug description
+* [app2](app2) – `UiDevice.getLauncherPackageName()` bug workaround
