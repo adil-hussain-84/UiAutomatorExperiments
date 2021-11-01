@@ -1,6 +1,5 @@
 package com.tazkiyatech.uiautomator.app1
 
-import android.os.Build
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
@@ -15,9 +14,9 @@ class UiAutomatorTest {
         get() = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
 
     /**
-     * This test method passes when run in an Android 10 emulator because the Android 10 emulator
-     * reports its default launcher package as `"com.google.android.apps.nexuslauncher"`
-     * but fails when run in an Android 11+ emulator because the Android 11+ emulator
+     * This test method passes when run in an Android 10 or older device because the device
+     * reports its default launcher package correctly;
+     * it fails when run in an Android 11+ device because the device
      * reports its default launcher package as `"com.android.settings"`.
      */
     @Test
@@ -26,10 +25,10 @@ class UiAutomatorTest {
     }
 
     /**
-     * This test method passes when run in an Android 10 emulator because the Android 10 emulator
-     * correctly reports its default launcher package as `"com.google.android.apps.nexuslauncher"`
-     * but fails when run in an Android 11+ emulator because the Android 11+ emulator
-     * incorrectly reports its default launcher package as `"com.android.settings"`.
+     * This test method passes when run in an Android 10 or older device because the device
+     * reports its default launcher package correctly;
+     * it fails when run in an Android 11+ device because the device
+     * reports its default launcher package as `"com.android.settings"`.
      */
     @Test
     fun waitOnLauncher() {
@@ -45,10 +44,11 @@ class UiAutomatorTest {
     }
 
     /**
-     * This test method passes when run in both Android 10 and Android 11+ emulators
-     * because it waits on a hard-coded package name of `"com.google.android.apps.nexuslauncher"`
-     * when run in an Android 11+ emulator
-     * instead of trusting what the emulator reports as its launcher package.
+     * This test method passes when run in an Android 11+ device
+     * which has the [Pixel Launcher](https://play.google.com/store/apps/details?id=com.google.android.apps.nexuslauncher)
+     * app set as its default launcher app (e.g. Pixel devices and Emulator devices).
+     * It passes because it waits on a hard-coded package name of `"com.google.android.apps.nexuslauncher"`
+     * when run in an Android 11+ device instead of trusting what the device reports as its launcher package.
      */
     @Test
     fun waitOnLauncher_with_hacked_launcher_package_name() {
@@ -65,15 +65,17 @@ class UiAutomatorTest {
 
     /**
      * This method exists as an alternative to the [UiDevice.getLauncherPackageName] method
-     * because that method returns `"com.android.settings"` (incorrectly) when run in an Android 11+ emulator device.
+     * because that method returns `"com.android.settings"` when run in Android 11+ devices.
      *
      * @return the package name of the device's default launcher (a.k.a. home) app.
      */
     private fun getHackedLauncherPackageName(): String? {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && uiDevice.productName.startsWith("sdk_gphone")) {
+        val launcherPackageName = uiDevice.launcherPackageName
+
+        return if (launcherPackageName.equals("com.android.settings")) {
             "com.google.android.apps.nexuslauncher"
         } else {
-            uiDevice.launcherPackageName
+            launcherPackageName
         }
     }
 }
