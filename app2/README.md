@@ -16,7 +16,6 @@ This test class contains a couple of test methods which pass when run on Android
 the [queries](https://developer.android.com/guide/topics/manifest/queries-element) element declared in
 the [src/debug/AndroidManifest.xml](src/debug/AndroidManifest.xml) file.
 
-##### Additional links
+#### Additional links
 
-* See [here](https://issuetracker.google.com/issues/178965163) for an item in IssueTracker which was raised as
-  an issue with the Android emulator and which was marked as "Won't Fix (Intended behavior)".
+* See [here](https://github.com/android/android-test/issues/1183) for an issue which was raised in the [android-test](https://github.com/android/android-test) GitHub repo about this problem.
