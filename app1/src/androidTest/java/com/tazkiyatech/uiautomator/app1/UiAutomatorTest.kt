@@ -1,5 +1,6 @@
 package com.tazkiyatech.uiautomator.app1
 
+import android.os.Build
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
@@ -72,10 +73,14 @@ class UiAutomatorTest {
     private fun getHackedLauncherPackageName(): String? {
         val launcherPackageName = uiDevice.launcherPackageName
 
-        return if (launcherPackageName.equals("com.android.settings")) {
-            "com.google.android.apps.nexuslauncher"
-        } else {
-            launcherPackageName
+        if (launcherPackageName == "com.android.settings" && Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (Build.MANUFACTURER.equals("google", ignoreCase = true)) {
+                return "com.google.android.apps.nexuslauncher"
+            } else if (Build.MANUFACTURER.equals("motorola", ignoreCase = true)) {
+                return "com.motorola.launcher3"
+            }
         }
+
+        return launcherPackageName
     }
 }
